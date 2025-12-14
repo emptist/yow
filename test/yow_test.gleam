@@ -1,16 +1,14 @@
-import glacier
-import glacier/should
+// import glacier
+// import glacier/should
+import wisp.{type Request, type Response}
 
-pub fn main() -> Nil {
-  glacier.main()
+pub fn handler(req: Request) -> Response {
+  let html = "<h1> Hello html </h1>"
+  wisp.response.html(html, 200)
 }
 
-// gleeunit test functions end in `_test`
-pub fn hello_world_test() {
-  // let name = "Joe"
-  // let greeting = "Hello, " <> name <> "!"
-
-  //assert greeting == "Hello, Joe!"
-  2
-  |> should.equal(2)
+pub fn main() -> Nil {
+  let resp = handler(Request.new("GET", "/"))
+  resp.body
+  |> should.equal("<h1> Hello html </h1>")
 }
