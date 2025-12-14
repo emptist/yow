@@ -1,7 +1,7 @@
-import gleeunit
+import glacier
 
 pub fn main() -> Nil {
-  gleeunit.main()
+  glacier.main()
 }
 
 // gleeunit test functions end in `_test`
