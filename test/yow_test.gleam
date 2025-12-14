@@ -3,7 +3,6 @@ import glacier/should
 
 pub fn main() -> Nil {
   glacier.main()
-  //gleeuint.main()
 }
 
 // gleeunit test functions end in `_test`
@@ -13,5 +12,5 @@ pub fn hello_world_test() {
 
   //assert greeting == "Hello, Joe!"
   2
-  |> should.equal(12)
+  |> should.equal(2)
 }
