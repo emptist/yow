@@ -1,13 +1,16 @@
-import gleam/int
-
 pub fn main() {
-  let number = int.random(10)
-  echo number
+  echo get_first_non_empty([[], [1, 2, 3], [4, 5]])
+  echo get_first_non_empty([[1, 2], [3, 4, 5], []])
+  echo get_first_non_empty([[], [], []])
+}
 
-  let result = case number {
-    2 | 4 | 6 | 8 -> "This is an even number"
-    1 | 3 | 5 | 7 -> "This is an odd number"
-    _ -> "I'm not sure"
+fn get_first_non_empty(lists: List(List(t))) -> List(t) {
+  case lists {
+    // Base case: if the list is empty, return an empty list
+    [] -> []
+    // Recursive case: if the first list is non-empty, return it
+    [[_, ..] as first, ..] -> first
+    // Recursive case: if the first list is empty, continue with the rest
+    [_, ..rest] -> get_first_non_empty(rest)
   }
-  echo result
 }
