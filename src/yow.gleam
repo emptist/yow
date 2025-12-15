@@ -1,24 +1,16 @@
-import gleam/int
-
 pub fn main() {
-  let _ = echo buy_pastry(10)
-  let _ = echo buy_pastry(8)
-  let _ = echo buy_pastry(5)
-  let _ = echo buy_pastry(3)
-}
+  // 8 bit int. In binary: 00000011
+  echo <<3>>
+  echo <<3>> == <<3:size(8)>>
 
-pub type PurchaseError {
-  NotEnoughMoney(required: Int)
-  NotLuckyEnough
-}
+  // 16 bit int. In binary: 0001100000000011
+  echo <<6147:size(16)>>
 
-fn buy_pastry(money: Int) -> Result(Int, PurchaseError) {
-  case money >= 5 {
-    True ->
-      case int.random(4) == 0 {
-        True -> Error(NotLuckyEnough)
-        False -> Ok(money - 5)
-      }
-    False -> Error(NotEnoughMoney(required: 5))
-  }
+  // A bit array of UTF8 data
+  echo <<"Hello, Joe!":utf8>>
+
+  // Concatenation
+  let first = <<4>>
+  let second = <<2>>
+  echo <<first:bits, second:bits>>
 }
