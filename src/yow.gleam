@@ -5,7 +5,7 @@ pub fn main() {
 
 fn sum_list(list: List(Int), total: Int) -> Int {
   case list {
-    [first, ..rest] -> sum_list(rest, total + first)
     [] -> total
+    [first, ..rest] -> sum_list(rest, total + first)
   }
 }
