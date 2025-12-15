@@ -1,11 +1,24 @@
-import gleam/io
+import gleam/int
 
 pub fn main() {
-  let x = Nil
-  echo x
+  let _ = echo buy_pastry(10)
+  let _ = echo buy_pastry(8)
+  let _ = echo buy_pastry(5)
+  let _ = echo buy_pastry(3)
+}
 
-  let y = Nil
+pub type PurchaseError {
+  NotEnoughMoney(required: Int)
+  NotLuckyEnough
+}
 
-  let result = io.println("Hello!")
-  echo result == y
+fn buy_pastry(money: Int) -> Result(Int, PurchaseError) {
+  case money >= 5 {
+    True ->
+      case int.random(4) == 0 {
+        True -> Error(NotLuckyEnough)
+        False -> Ok(money - 5)
+      }
+    False -> Error(NotEnoughMoney(required: 5))
+  }
 }
