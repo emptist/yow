@@ -1,18 +1,19 @@
+import gleam/io
+import gleam/string
+
 pub fn main() {
-  let add_one = fn(x) { x + 1 }
-  let exclaim = fn(x) { x <> "!" }
+  // Without the pipe operator
+  io.println(string.drop_start(string.drop_end("Hello, Joe!", 1), 7))
 
-  // Invalid, Int and String are not the same type
-  // twice(10, exclaim)
+  // With the pipe operator
+  "Hello, Mike!"
+  |> string.drop_end(1)
+  |> string.drop_start(7)
+  |> io.println
 
-  // Here the type variable is replaced by the type Int
-  echo twice(10, add_one)
-
-  // Here the type variable is replaced by the type String
-  echo twice("Hello", exclaim)
-}
-
-// The name `value` refers to the same type multiple times
-fn twice(argument: value, my_function: fn(value) -> value) -> value {
-  my_function(my_function(argument))
+  // Changing order with function capturing
+  "1"
+  |> string.append("2")
+  |> string.append("3", _)
+  |> io.println
 }
