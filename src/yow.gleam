@@ -1,33 +1,13 @@
-import gleam/io
-
-pub type Fish {
-  Starfish(name: String, favourite_colour: String)
-  Jellyfish(name: String, jiggly: Bool)
-}
-
-pub type IceCream {
-  IceCream(flavour: String)
+pub type SchoolPerson {
+  Teacher(name: String, subject: String, floor: Int, room: Int)
 }
 
 pub fn main() {
-  handle_fish(Starfish("Lucy", "Pink"))
-  handle_ice_cream(IceCream("strawberry"))
-}
+  let teacher1 = Teacher(name: "Mr Dodd", subject: "ICT", floor: 2, room: 2)
 
-fn handle_fish(fish: Fish) {
-  case fish {
-    Starfish(_, favourite_colour) -> io.println(favourite_colour)
-    Jellyfish(name, ..) -> io.println(name)
-  }
-}
+  // Use the update syntax
+  let teacher2 = Teacher(..teacher1, subject: "PE", room: 6)
 
-fn handle_ice_cream(ice_cream: IceCream) {
-  // case ice_cream {
-  //   IceCream(favourite_flavour) -> io.println(favourite_flavour)
-  // }
-
-  // if the custom type has a single variant you can
-  // destructure it using `let` instead of a case expression!
-  let IceCream(flavour) = ice_cream
-  io.println(flavour)
+  echo teacher1
+  echo teacher2
 }
