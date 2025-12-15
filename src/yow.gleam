@@ -1,9 +1,18 @@
 pub fn main() {
-  let add = fn(a, b) { a + b }
-  // These two statements are equivalent
-  let add_one_v1 = fn(x) { add(1, x) }
-  let add_one_v2 = add(1, _)
+  let add_one = fn(x) { x + 1 }
+  let exclaim = fn(x) { x <> "!" }
 
-  echo add_one_v1(10)
-  echo add(1, _)(10)
+  // Invalid, Int and String are not the same type
+  // twice(10, exclaim)
+
+  // Here the type variable is replaced by the type Int
+  echo twice(10, add_one)
+
+  // Here the type variable is replaced by the type String
+  echo twice("Hello", exclaim)
+}
+
+// The name `value` refers to the same type multiple times
+fn twice(argument: value, my_function: fn(value) -> value) -> value {
+  my_function(my_function(argument))
 }
