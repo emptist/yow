@@ -1,29 +1,19 @@
-pub fn main() {
-  let quantity = 5.0
-  let unit_price = 10.0
-  let discount = 0.2
+//// A module containing some unusual functions and types.
 
-  // Using the regular label syntax
-  echo calculate_total_cost(
-    quantity: quantity,
-    unit_price: unit_price,
-    discount: discount,
-  )
-
-  // Using the shorthand syntax
-  echo calculate_total_cost(quantity:, unit_price:, discount:)
-  // use labels in different order
-  echo calculate_total_cost(quantity:, discount:, unit_price:)
-  // don't use any labels
-  echo calculate_total_cost(quantity, unit_price, discount)
+/// A type where the value can never be constructed.
+/// Can you work out why?
+pub type Never {
+  Never(Never)
 }
 
-fn calculate_total_cost(
-  quantity quantity: Float,
-  unit_price price: Float,
-  discount discount: Float,
-) -> Float {
-  let subtotal = quantity *. price
-  let discount = subtotal *. discount
-  subtotal -. discount
+/// Call a function twice with an initial value.
+///
+pub fn twice(argument: value, my_function: fn(value) -> value) -> value {
+  my_function(my_function(argument))
+}
+
+/// Call a function three times with an initial value.
+///
+pub fn thrice(argument: value, my_function: fn(value) -> value) -> value {
+  my_function(my_function(my_function(argument)))
 }
