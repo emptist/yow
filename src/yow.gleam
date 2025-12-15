@@ -9,7 +9,7 @@ pub fn factorial(x: Int) -> Int {
     // Base case
     0 -> 1
     1 -> 1
-
+    2 -> 2
     // Recursive case
     _ -> x * factorial(x - 1)
   }
