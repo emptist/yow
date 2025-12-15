@@ -1,19 +1,14 @@
-import gleam/io
-import gleam/string
-
 pub fn main() {
-  // Without the pipe operator
-  io.println(string.drop_start(string.drop_end("Hello, Joe!", 1), 7))
+  // Without using labels
+  echo calculate(1, 2, 3)
 
-  // With the pipe operator
-  "Hello, Mike!"
-  |> string.drop_end(1)
-  |> string.drop_start(5)
-  |> io.println
+  // Using the labels
+  echo calculate(1, add: 2, multiply: 3)
 
-  // Changing order with function capturing
-  "1"
-  |> string.append("2")
-  |> string.append("3", _)
-  |> io.println
+  // Using the labels in a different order
+  echo calculate(1, multiply: 2, add: 3)
+}
+
+fn calculate(value: Int, add addend: Int, multiply multiplier: Int) {
+  value * multiplier + addend
 }
