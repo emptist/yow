@@ -1,16 +1,16 @@
+import gleam/option.{type Option, None, Some}
+
 pub fn main() {
-  echo get_first_non_empty([[], [1, 2, 3], [4, 5]])
-  echo get_first_non_empty([[1, 2], [3, 4, 5], []])
-  echo get_first_non_empty([[], [], []])
+  let numbers = [1, 2, 3, 4, 5]
+  echo get_first_larger(numbers, 2)
+  echo get_first_larger(numbers, 3)
+  echo get_first_larger(numbers, 5)
 }
 
-fn get_first_non_empty(lists: List(List(t))) -> List(t) {
-  case lists {
-    // Base case: if the list is empty, return an empty list
-    [] -> []
-    // Recursive case: if the first list is non-empty, return it
-    [[_, ..] as first, ..] -> first
-    // Recursive case: if the first list is empty, continue with the rest
-    [_, ..rest] -> get_first_non_empty(rest)
+fn get_first_larger(numbers: List(Int), limit: Int) -> Option(Int) {
+  case numbers {
+    [] -> None
+    [first, ..] if first > limit -> Some(first)
+    [_, ..rest] -> get_first_larger(rest, limit)
   }
 }
