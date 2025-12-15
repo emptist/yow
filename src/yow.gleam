@@ -1,12 +1,16 @@
-pub fn main() {
-  echo get_name("Hello, Joe")
-  echo get_name("Hello, Mike")
-  echo get_name("System still working?")
-}
+import gleam/int
+import gleam/list
 
-fn get_name(x: String) -> String {
-  case x {
-    "Hello, " <> name -> name
-    _ -> "Unknown"
+pub fn main() {
+  let x = list.repeat(int.random(5), times: int.random(3))
+  echo x
+
+  let result = case x {
+    [] -> "Empty list"
+    [1] -> "List of just 1"
+    [4, ..] -> "List starting with 4"
+    [_, _] -> "List of 2 elements"
+    _ -> "Some other list"
   }
+  echo result
 }
