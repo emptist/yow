@@ -4,8 +4,8 @@ pub fn main() {
   let x = Nil
   echo x
 
-  // let y: List(String) = Nil
+  let y = Nil
 
   let result = io.println("Hello!")
-  echo result == Nil
+  echo result == y
 }
