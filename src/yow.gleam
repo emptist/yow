@@ -1,14 +1,29 @@
 pub fn main() {
-  // Without using labels
-  echo calculate(1, 2, 3)
+  let quantity = 5.0
+  let unit_price = 10.0
+  let discount = 0.2
 
-  // Using the labels
-  echo calculate(1, add: 2, multiply: 3)
+  // Using the regular label syntax
+  echo calculate_total_cost(
+    quantity: quantity,
+    unit_price: unit_price,
+    discount: discount,
+  )
 
-  // Using the labels in a different order
-  echo calculate(1, multiply: 2, add: 3)
+  // Using the shorthand syntax
+  echo calculate_total_cost(quantity:, unit_price:, discount:)
+  // use labels in different order
+  echo calculate_total_cost(quantity:, discount:, unit_price:)
+  // don't use any labels
+  echo calculate_total_cost(quantity, unit_price, discount)
 }
 
-fn calculate(value: Int, add addend: Int, multiply multiplier: Int) {
-  value * multiplier + addend
+fn calculate_total_cost(
+  quantity quantity: Float,
+  unit_price price: Float,
+  discount discount: Float,
+) -> Float {
+  let subtotal = quantity *. price
+  let discount = subtotal *. discount
+  subtotal -. discount
 }
