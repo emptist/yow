@@ -1,19 +1,11 @@
-pub type Option(inner) {
-  Some(inner)
-  None
-}
-
-// An option of string
-pub const name: Option(String) = Some("Annah")
-
-// An option of int
-pub const level: Option(Int) = Some(10)
+import gleam/io
 
 pub fn main() {
-  case name {
-    Some(string) -> echo string
-    _ -> echo "No name"
-  }
-  echo name
-  echo level
+  let x = Nil
+  echo x
+
+  // let y: List(String) = Nil
+
+  let result = io.println("Hello!")
+  echo result == Nil
 }
