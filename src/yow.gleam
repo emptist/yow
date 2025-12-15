@@ -8,7 +8,7 @@ pub fn main() {
   // With the pipe operator
   "Hello, Mike!"
   |> string.drop_end(1)
-  |> string.drop_start(7)
+  |> string.drop_start(5)
   |> io.println
 
   // Changing order with function capturing
