@@ -1,20 +1,12 @@
-pub type Season {
-  Spring
-  Summer
-  Autumn
-  Winter
+pub type Person {
+  Person(name: String, age: Int, needs_glasses: Bool)
 }
 
 pub fn main() {
-  echo weather(Spring)
-  echo weather(Autumn)
-}
+  let amy = Person("Amy", 26, True)
+  let jared = Person(name: "Jared", age: 31, needs_glasses: True)
+  let tom = Person("Tom", 8, needs_glasses: False)
 
-fn weather(season: Season) -> String {
-  case season {
-    Spring -> "Mild"
-    Summer -> "Hot"
-    Autumn -> "Windy"
-    Winter -> "Cold"
-  }
+  let friends = [amy, jared, tom]
+  echo friends
 }
