@@ -22,6 +22,10 @@ fn handle_fish(fish: Fish) {
 }
 
 fn handle_ice_cream(ice_cream: IceCream) {
+  // case ice_cream {
+  //   IceCream(favourite_flavour) -> io.println(favourite_flavour)
+  // }
+
   // if the custom type has a single variant you can
   // destructure it using `let` instead of a case expression!
   let IceCream(flavour) = ice_cream
