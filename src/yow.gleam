@@ -1,16 +1,16 @@
-import gleam/int
-import gleam/list
-
 pub fn main() {
-  let x = list.repeat(int.random(5), times: int.random(3))
-  echo x
+  echo factorial(5)
+  echo factorial(7)
+}
 
-  let result = case x {
-    [] -> "Empty list"
-    [1] -> "List of just 1"
-    [4, ..] -> "List starting with 4"
-    [_, _] -> "List of 2 elements"
-    _ -> "Some other list"
+// A recursive functions that calculates factorial
+pub fn factorial(x: Int) -> Int {
+  case x {
+    // Base case
+    0 -> 1
+    1 -> 1
+
+    // Recursive case
+    _ -> x * factorial(x - 1)
   }
-  echo result
 }
