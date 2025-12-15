@@ -1,11 +1,16 @@
-pub fn main() {
-  let sum = sum_list([18, 56, 35, 85, 91], 0)
-  echo sum
-}
+import gleam/int
 
-fn sum_list(list: List(Int), total: Int) -> Int {
-  case list {
-    [] -> total
-    [first, ..rest] -> sum_list(rest, total + first)
+pub fn main() {
+  let x = int.random(2)
+  let y = int.random(2)
+  echo x
+  echo y
+  echo [x, y]
+  let result = case x, y {
+    0, 0 -> "Both are zero"
+    0, _ -> "First is zero"
+    _, 0 -> "Second is zero"
+    _, _ -> "Neither are zero"
   }
+  echo result
 }
