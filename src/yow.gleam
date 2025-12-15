@@ -1,14 +1,10 @@
-pub type SchoolPerson {
-  Teacher(name: String, subject: String, floor: Int, room: Int)
+pub type Option(inner) {
+  Some(inner)
+  None
 }
 
-pub fn main() {
-  let teacher1 = Teacher(name: "Mr Dodd", subject: "ICT", floor: 2, room: 2)
+// An option of string
+pub const name: Option(String) = Some("Annah")
 
-  // Use the update syntax
-  let teacher2 = Teacher(..teacher1, subject: "PE", room: 6)
-  let teacher3 = Teacher(..teacher2, name: "Mrs Jim Dodd")
-  echo teacher1
-  echo teacher2
-  echo teacher3
-}
+// An option of int
+pub const level: Option(Int) = Some(10)
