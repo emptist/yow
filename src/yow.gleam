@@ -1,8 +1,20 @@
-pub fn main() {
-  let triple = #(1, 2.2, "three")
-  echo triple
+pub type Season {
+  Spring
+  Summer
+  Autumn
+  Winter
+}
 
-  let #(a, _, _) = triple
-  echo a
-  echo triple.1
+pub fn main() {
+  echo weather(Spring)
+  echo weather(Autumn)
+}
+
+fn weather(season: Season) -> String {
+  case season {
+    Spring -> "Mild"
+    Summer -> "Hot"
+    Autumn -> "Windy"
+    Winter -> "Cold"
+  }
 }
