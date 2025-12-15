@@ -1,19 +1,13 @@
-//// A module containing some unusual functions and types.
-
-/// A type where the value can never be constructed.
-/// Can you work out why?
-pub type Never {
-  Never(Never)
+pub fn main() {
+  echo old_function()
+  echo new_function()
 }
 
-/// Call a function twice with an initial value.
-///
-pub fn twice(argument: value, my_function: fn(value) -> value) -> value {
-  my_function(my_function(argument))
+@deprecated("Use new_function instead")
+fn old_function() {
+  Nil
 }
 
-/// Call a function three times with an initial value.
-///
-pub fn thrice(argument: value, my_function: fn(value) -> value) -> value {
-  my_function(my_function(my_function(argument)))
+fn new_function() {
+  Nil
 }
