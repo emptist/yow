@@ -1,24 +1,25 @@
 import gleam/int
 import gleam/io
-import gleam/result
+import gleam/result.{map, try, unwrap}
 
 pub fn main() {
   io.println("=== map ===")
-  let _ = echo result.map(Ok(1), fn(x) { x * 2 })
-  let _ = echo result.map(Error(1), fn(x) { x * 2 })
+  let _ = echo Ok(1) |> map(fn(x) { x * 2 })
+  let _ = echo Error(1) |> map(fn(x) { x * 2 })
 
   io.println("=== try ===")
-  let _ = echo result.try(Ok("1"), int.parse)
-  let _ = echo result.try(Ok("no"), int.parse)
-  let _ = echo result.try(Error(Nil), int.parse)
+  let _ = echo Ok("1") |> try(int.parse)
+  let _ = echo Ok("no") |> try(int.parse)
+  //== Error(Nil)
+  let _ = echo Error(Nil) |> try(int.parse)
 
   io.println("=== unwrap ===")
-  echo result.unwrap(Ok("1234"), "default")
-  echo result.unwrap(Error(Nil), "default")
+  echo Ok("1234") |> unwrap("default")
+  echo Error(Nil) |> unwrap("default")
 
   io.println("=== pipeline ===")
   int.parse("-1234")
-  |> result.map(int.absolute_value)
-  |> result.try(int.remainder(_, 42))
+  |> map(int.absolute_value)
+  |> try(int.remainder(_, 42))
   |> echo
 }
