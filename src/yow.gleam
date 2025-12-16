@@ -1,13 +1,24 @@
-import gleam/option.{type Option, None, Some}
+pub fn main() {
+  let zero = new(0)
+  let negative = new(-1)
+  let positive = PositiveInt(-1)
 
-pub type Person {
-  Person(name: String, pet: Option(String))
+  echo to_int(positive)
+  echo to_int(zero)
+  echo to_int(negative)
 }
 
-pub fn main() {
-  let person_with_pet = Person("Al", Some("Nubi"))
-  let person_without_pet = Person("Maria", None)
+pub opaque type PositiveInt {
+  PositiveInt(inner: Int)
+}
 
-  echo person_with_pet
-  echo person_without_pet
+pub fn new(i: Int) -> PositiveInt {
+  case i >= 0 {
+    True -> PositiveInt(i)
+    False -> PositiveInt(0)
+  }
+}
+
+pub fn to_int(i: PositiveInt) -> Int {
+  i.inner
 }
