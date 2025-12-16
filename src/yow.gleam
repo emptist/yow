@@ -1,15 +1,13 @@
 pub fn main() {
-  let a = unsafely_get_first_element([123])
-  echo a
+  assert add(1, 2) == 3
 
-  let b = unsafely_get_first_element([])
-  echo b
+  assert add(1, 2) < add(1, 3)
+
+  assert add(6, 2) == add(2, 6) as "Addition should be commutative"
+
+  assert add(2, 2) == 5
 }
 
-pub fn unsafely_get_first_element(items: List(a)) -> a {
-  // This will panic if the list is empty.
-  // A regular `let` would not permit this partial pattern
-  let assert [first, ..] = items
-  //as "List should not be empty"
-  first
+fn add(a: Int, b: Int) -> Int {
+  a + b
 }
