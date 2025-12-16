@@ -1,14 +1,13 @@
-import gleam/dict.{delete, from_list, insert, keys}
+import gleam/option.{type Option, None, Some}
+
+pub type Person {
+  Person(name: String, pet: Option(String))
+}
 
 pub fn main() {
-  let scores = from_list([#("Lucy", 13), #("Drew", 15)])
-  echo scores
+  let person_with_pet = Person("Al", Some("Nubi"))
+  let person_without_pet = Person("Maria", None)
 
-  let scores =
-    dict.from_list([#("Lucy", 13), #("Drew", 15)])
-    |> insert("Bushra", 16)
-    |> insert("Darius", 14)
-    |> delete("Drew")
-    |> keys()
-  echo scores
+  echo person_with_pet
+  echo person_without_pet
 }
