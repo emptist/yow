@@ -1,16 +1,26 @@
+import gleam/io
+import gleam/list
+
 pub fn main() {
-  // 8 bit int. In binary: 00000011
-  echo <<3>>
-  echo <<3>> == <<3:size(8)>>
+  let ints = [1, 2, 3, 4, 5]
 
-  // 16 bit int. In binary: 0001100000000011
-  echo <<6147:size(16)>>
+  io.println("=== map ===")
+  echo list.map(ints, fn(x) { x * 2 })
 
-  // A bit array of UTF8 data
-  echo <<"Hello, Joe!":utf8>>
+  io.println("=== filter ===")
+  echo list.filter(ints, fn(x) { x % 2 == 0 })
 
-  // Concatenation
-  let first = <<4>>
-  let second = <<2>>
-  echo <<first:bits, second:bits>>
+  io.println("=== fold ===")
+  echo list.fold(ints, 0, fn(count, e) { { count + 1 } * e })
+  echo factorial(5)
+  io.println("=== find ===")
+  let _ = echo list.find(ints, fn(x) { x > 3 })
+  echo list.find(ints, fn(x) { x > 13 })
+}
+
+fn factorial(n: Int) -> Int {
+  case n {
+    0 -> 1
+    _ -> n * factorial(n - 1)
+  }
 }
