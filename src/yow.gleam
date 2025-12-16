@@ -3,5 +3,5 @@ pub fn main() {
 }
 
 pub fn todo_without_reason() {
-  todo
+  todo as "wait"
 }
