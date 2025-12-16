@@ -1,31 +1,24 @@
+import gleam/int
 import gleam/io
-import gleam/list.{filter, find, fold, map}
+import gleam/result
 
-/// when using |> operator, the function name is the same as the function in the module
-/// this looks similar to smalltalk
-/// aCollection.collect: [ :each | each * 2 ]
-/// aCollection.select: [ :each | each % 2 == 0 ]
-/// aCollection.inject: 0 into: [ :count, :each | { count + 1 } * each ]
 pub fn main() {
-  let ints = [1, 2, 3, 4, 5]
-
   io.println("=== map ===")
-  echo ints |> map(fn(x) { x * 2 })
+  let _ = echo result.map(Ok(1), fn(x) { x * 2 })
+  let _ = echo result.map(Error(1), fn(x) { x * 2 })
 
-  io.println("=== filter ===")
-  echo ints |> filter(fn(x) { x % 2 == 0 })
+  io.println("=== try ===")
+  let _ = echo result.try(Ok("1"), int.parse)
+  let _ = echo result.try(Ok("no"), int.parse)
+  let _ = echo result.try(Error(Nil), int.parse)
 
-  io.println("=== fold ===")
-  echo ints |> fold(0, fn(count, e) { { count + 1 } * e })
-  echo factorial(5)
-  io.println("=== find ===")
-  let _ = echo ints |> find(fn(x) { x > 3 })
-  echo ints |> find(fn(x) { x > 13 })
-}
+  io.println("=== unwrap ===")
+  echo result.unwrap(Ok("1234"), "default")
+  echo result.unwrap(Error(Nil), "default")
 
-fn factorial(n: Int) -> Int {
-  case n {
-    0 -> 1
-    _ -> n * factorial(n - 1)
-  }
+  io.println("=== pipeline ===")
+  int.parse("-1234")
+  |> result.map(int.absolute_value)
+  |> result.try(int.remainder(_, 42))
+  |> echo
 }
