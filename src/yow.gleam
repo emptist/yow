@@ -27,4 +27,4 @@ pub fn main() {
 }
 
 @external(erlang, "observer", "start")
-pub fn observer() -> a
+fn observer() -> a
