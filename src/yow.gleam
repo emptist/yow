@@ -17,9 +17,14 @@ pub fn main() {
   echo Ok("1234") |> unwrap("default")
   echo Error(Nil) |> unwrap("default")
 
+  observer()
+
   io.println("=== pipeline ===")
   int.parse("-1234")
   |> map(int.absolute_value)
   |> try(int.remainder(_, 42))
   |> echo
 }
+
+@external(erlang, "observer", "start")
+pub fn observer() -> a
