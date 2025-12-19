@@ -1,6 +1,7 @@
 import gleam/int
 import gleam/io
 import gleam/string as text
+import result_hard.{showresults}
 
 //import playground/echo as playground_echo
 
@@ -16,4 +17,7 @@ pub fn main() -> Nil {
 
   io.println("joy")
   io.println(text.reverse("jim"))
+
+  let _ = showresults()
+  Nil
 }
