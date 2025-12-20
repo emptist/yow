@@ -1,6 +1,22 @@
-pub fn main() {
-  echo factorial(5)
-  echo factorial(7)
+// let's calculates the factorial of a list of numbers, first
+fn factorial_list(list: List(Int), total: Int) -> Int {
+  case list {
+    [] -> total
+    [first, ..rest] ->
+      case total {
+        0 -> factorial_list(rest, first)
+        _ -> factorial_list(rest, total * first)
+      }
+  }
+}
+
+// now it's easy to understand:
+fn factorial_loop(x: Int, accumulator: Int) -> Int {
+  case x {
+    0 -> accumulator
+    1 -> accumulator
+    _ -> factorial_loop(x - 1, accumulator * x)
+  }
 }
 
 pub fn factorial(x: Int) -> Int {
@@ -8,13 +24,9 @@ pub fn factorial(x: Int) -> Int {
   x |> factorial_loop(1)
 }
 
-fn factorial_loop(x: Int, accumulator: Int) -> Int {
-  case x {
-    0 -> accumulator
-    1 -> accumulator
-
-    // The last thing this function does is call itself
-    // In the previous lesson the last thing it did was multiply two ints
-    _ -> factorial_loop(x - 1, accumulator * x)
-  }
+pub fn main() {
+  echo factorial_list([], 0)
+  echo factorial_list([18, 56, 35, 85, 91], 0)
+  echo factorial_loop(5, 1)
+  echo factorial_loop(7, 1)
 }
