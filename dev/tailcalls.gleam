@@ -28,11 +28,6 @@ pub fn factorial_l(l: List(Int)) -> Int {
   case l {
     [] -> factorial_list(l, 0)
     _ -> factorial_list(l, 1)
-    // [first, ..rest] ->
-    //   case accumulator < first {
-    //     True -> factorial_list(l, first)
-    //     False -> factorial_list(l, accumulator)
-    //   }
   }
 }
 
