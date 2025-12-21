@@ -8,7 +8,7 @@ fn update_teacher_subject(teacher, new_subject) {
 
 pub fn main() {
   let teacher = Teacher("Alice", 30, "Math")
-  let teacher2 = Teacher(..teacher, subject: "History")
+  let teacher2 = Teacher(..teacher, age: 25, subject: "History")
   echo teacher2
   let _ = update_teacher_subject(teacher, "Science")
   Nil
