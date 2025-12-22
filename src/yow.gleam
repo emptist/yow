@@ -13,6 +13,10 @@ pub fn string2int(string: String) -> Int {
   }
 }
 
+pub fn add(a: Int, b: Int) -> Int {
+  a + b
+}
+
 pub fn main() {
   echo string2int("12345")
 
@@ -34,4 +38,10 @@ pub fn main() {
   let first = <<4>>
   let second = <<2>>
   echo <<first:bits, second:bits>>
+
+  echo "// Function capturing"
+  let add2: fn(Int) -> Int = fn(x) { add(x, 2) }
+  let add2too = add(2, _)
+  echo add2(3)
+  echo add2too(3)
 }
