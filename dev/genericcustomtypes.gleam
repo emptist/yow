@@ -6,9 +6,9 @@ pub type Optio(inner) {
   None
 }
 
-const name: Optio(String) = Some("Gleam")
+const name = Some("Gleam")
 
-const age: Optio(Int) = Some(6)
+const age = Some(6)
 
 pub fn main() {
   let _ = echo name
