@@ -1,3 +1,4 @@
+import gleam/float
 import gleam/int
 import gleam/io
 import gleam/string as text
@@ -44,4 +45,13 @@ pub fn main() {
   let add2too = add(2, _)
   echo add2(3)
   echo add2too(3)
+
+  echo "// Float operations"
+  let f1 = 1.5
+  let f2 = 2.5
+  echo float.add(f1, f2)
+  let _ = float.add(f1, f2)
+  let _ = echo float.parse("3.14")
+
+  echo float.parse("no")
 }
