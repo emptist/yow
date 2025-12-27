@@ -6,6 +6,8 @@
 // ### 1. Basic guard with early return
 // ```gleam
 import gleam/bool
+import gleam/dynamic/decode
+import gleam/result
 
 pub fn divide(a, b) {
   // If b is 0, return 0 immediately. Otherwise continue with division.
@@ -44,7 +46,6 @@ pub fn count(from: Int, to: Int) -> Int {
 
 // ### 4. Simple result mapping
 // ```gleam
-import gleam/result
 
 pub type Wibble(a, b) {
   Wibble(a: a, b: b)
@@ -103,27 +104,17 @@ pub fn login(f: fn(String) -> b) -> b {
 // ## Type Annotations
 
 // ### 7. Complex type annotations
-// ```gleam
 // pub fn main() {
-pub fn complex_type() {
-  use
-    Box(
-      xxxxxxxxxxxxxxxxxxxxxxx,
-      yyyyyyyyyyyyyyyyyyyyyyyyyyy,
-      zzzzzzzzzzzzzzzzzzzzzzzzzzzz,
-    ): Box(Int, Bool, String),
-    Box(_)
-  <- apply(Box(1))
-  x
-}
-
-pub type Box(Int, Bool, String) {
-  Box(a: Int, b: Bool, c: String)
-}
-
-pub fn apply(b: Box(a)) -> Box(Box(a)) {
-  Box(b)
-}
+//   apply(Box(1), fn(use0, use1) {
+//     let Box(
+//       xxxxxxxxxxxxxxxxxxxxx,
+//       yyyyyyyyyyyyyyyyyyyyyyyyyyy,
+//       zzzzzzzzzzzzzzzzzzzzzzzzzzzz,
+//     ): Box(Int, Bool, String) = use0
+//     let Box(_) = use1
+//     x
+//   })
+// }
 
 // ``` [7](#1-6) 
 
@@ -131,7 +122,6 @@ pub fn apply(b: Box(a)) -> Box(Box(a)) {
 
 // ### 8. Deeply nested field extraction
 // ```gleam
-import gleam/dynamic/decode
 
 // pub fn main() {
 pub fn nested_fields() {
