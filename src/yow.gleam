@@ -53,5 +53,6 @@ pub fn main() {
   let _ = float.add(f1, f2)
   let _ = echo float.parse("3.14")
 
-  echo float.parse("no")
+  io.println("float.parse(\"no\") => " <> text.inspect(float.parse("no")))
+  echo "int.clamp(5, 10, 120) " <> text.inspect(int.clamp(5, 10, 120))
 }
