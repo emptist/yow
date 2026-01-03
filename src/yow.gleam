@@ -7,6 +7,11 @@ import gleam/string as text
 
 //import playground/echo as playground_echo
 
+pub type Number =
+  Int
+
+const myage: Int = 30
+
 pub fn string2int(string: String) -> Int {
   case int.parse(string) {
     Ok(i) -> i
@@ -14,11 +19,20 @@ pub fn string2int(string: String) -> Int {
   }
 }
 
-pub fn add(a: Int, b: Int) -> Int {
+@deprecated("Use addtwo instead")
+pub fn add(a: Number, b: Number) -> Number {
   a + b
 }
 
-pub fn main() {
+pub fn twice(x: Number, func: fn(Number) -> Number) -> Number {
+  func(func(x))
+}
+
+pub fn addtwo(a: Number, b: Number) -> Number {
+  a + b
+}
+
+pub fn main() -> Number {
   echo string2int("12345")
 
   io.println("joy")
@@ -41,10 +55,10 @@ pub fn main() {
   echo <<first:bits, second:bits>>
 
   echo "// Function capturing"
-  let add2: fn(Int) -> Int = fn(x) { add(x, 2) }
-  let add2too = add(2, _)
+  let add2: fn(Number) -> Number = fn(x) { addtwo(x, 2) }
+  let add2too = addtwo(2, _)
   echo add2(3)
-  echo add2too(3)
+  echo add2too(addtwo(5, 6))
 
   echo "// Float operations"
   let f1 = 1.5
@@ -55,4 +69,19 @@ pub fn main() {
 
   io.println("float.parse(\"no\") => " <> text.inspect(float.parse("no")))
   echo "int.clamp(5, 10, 120) " <> text.inspect(int.clamp(5, 10, 120))
+  echo 10.0e7
+  echo text.inspect(7.0e-10)
+  let _v = 7.0e-10
+
+  let a: Number = 2
+  let b: Int = 2
+  echo { a == b } == True
+
+  echo [{ myage - 2 } * 3, 1 + myage, ..[1, 2, 3]]
+  echo addtwo(3, 4)
+  echo twice(2, add2)
+  echo twice(3, addtwo(_, 4))
+  echo twice(3, addtwo(4, _))
+  echo twice(5, fn(x) { x * x })
+  // Tuples
 }
